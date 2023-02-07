@@ -1,7 +1,51 @@
 import FooterSmall from "components/Footers/FooterSmall";
-import React from "react";
+import React, { useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Register() {
+  const [fileloading, setFileLoading] = useState(false);
+  const [agent, setAgent] = useState({
+    email: "",
+    name: "",
+    phone: "",
+    city: "",
+    password: "",
+    document: "",
+    category: "",
+    brand: "",
+    type: "",
+  });
+
+  const [doc, setDoc] = useState();
+
+  const handleFileSubmit = async (e) => {
+    setFileLoading(true);
+    const formdata = new FormData();
+    formdata.append("file", e.target.files[0]);
+    formdata.append("upload_preset", "ivhaobec");
+
+    const dataFile = await fetch(
+      "https://api.cloudinary.com/v1_1/dfhginrxj/image/upload",
+      {
+        method: "POST",
+        body: formdata,
+      }
+    )
+      .then((r) => r.json())
+      .catch((err) => {
+        console.log(err);
+      });
+    if (dataFile.secure_url !== null) {
+      toast.success("Uploaded Successfully");
+      setFileLoading(false);
+      setDoc(dataFile.secure_url);
+    }
+  };
+
+  const handleChange = (e) => {};
+
+  const handleSubmit = () => {};
+
   return (
     <>
       <main>
@@ -37,6 +81,8 @@ export default function Register() {
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Name"
+                          name="name"
+                          onChange={handleChange}
                         />
                       </div>
 
@@ -51,6 +97,8 @@ export default function Register() {
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Email"
+                          name="email"
+                          onChange={handleChange}
                         />
                       </div>
 
@@ -65,33 +113,124 @@ export default function Register() {
                           type="password"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Password"
+                          name="password"
+                          onChange={handleChange}
                         />
                       </div>
 
-                      <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                          />
-                          <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                            I agree with the{" "}
-                            <a
-                              href="#pablo"
-                              className="text-lightBlue-500"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              Privacy Policy
-                            </a>
-                          </span>
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Phone
                         </label>
+                        <input
+                          type="number"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="+1 454561312"
+                          name="phone"
+                          onChange={handleChange}
+                        />
+                      </div>
+
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          City
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="AmsterDam"
+                          name="city"
+                          onChange={handleChange}
+                        />
+                      </div>
+
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Insurance Category
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="AmsterDam"
+                          name="category"
+                          onChange={handleChange}
+                        />
+                      </div>
+
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Insurance Brand
+                        </label>
+                        <input
+                          type="text"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="Example"
+                          name="brand"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      {fileloading !== false ? (
+                        <>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Uploading Document.....
+                            </label>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Submit a Registration Document
+                        </label>
+                        <input
+                          type="file"
+                          accept=".pdf"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="Example"
+                          name="document"
+                          onChange={handleFileSubmit}
+                        />
+                      </div>
+
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Insurance Type
+                        </label>
+                        <select name="type" onChange={handleChange}>
+                          <option selected>---------</option>
+                          <option>Type A</option>
+                          <option>Type B</option>
+                        </select>
                       </div>
 
                       <div className="text-center mt-6">
                         <button
                           className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                           type="button"
+                          onClick={handleSubmit}
                         >
                           Create Account
                         </button>
@@ -105,6 +244,7 @@ export default function Register() {
           <FooterSmall absolute />
         </section>
       </main>
+      <Toaster />
     </>
   );
 }
