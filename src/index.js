@@ -12,6 +12,7 @@ import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import Login from "views/auth/Login";
 import Register from "views/auth/Register";
+import UnverVerification from "views/UnverVerification";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -19,7 +20,7 @@ ReactDOM.render(
       <Route path="/" exact component={Dashboard} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-      <Route path="/admin/settings" exact component={Settings} />
+      <Route path="/under-verification" exact component={UnverVerification} />
       <Route path="/admin/tables" exact component={Tables} />
       <Redirect from="/admin" to="/admin/dashboard" />
     </Switch>

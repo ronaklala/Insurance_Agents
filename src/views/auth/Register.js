@@ -1,3 +1,4 @@
+import axios from "axios";
 import FooterSmall from "components/Footers/FooterSmall";
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
@@ -14,6 +15,7 @@ export default function Register() {
     category: "",
     brand: "",
     type: "",
+    is_verified: false,
   });
 
   const [doc, setDoc] = useState();
@@ -42,9 +44,46 @@ export default function Register() {
     }
   };
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAgent((event) => {
+      return {
+        ...event,
+        [name]: value,
+      };
+    });
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    agent.document = doc;
+
+    if (
+      agent.category === "" ||
+      agent.city === "" ||
+      agent.document === "" ||
+      agent.email === "" ||
+      agent.name === "" ||
+      agent.password === "" ||
+      agent.phone === "" ||
+      agent.type === ""
+    ) {
+      toast.error("Please Fill the whole Form to register");
+    } else {
+      axios
+        .post("http://localhost:5000/agent/agent_register", agent)
+        .then((res) => {
+          if (res.status === 200) {
+            toast.success("Registered Successfully, You can now Login");
+            setTimeout(() => {
+              window.location.href = "/under-verification";
+            }, 500);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   return (
     <>

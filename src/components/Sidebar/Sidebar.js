@@ -1,11 +1,21 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
+  const [agent, setAgent] = useState();
+
+  useEffect(() => {
+    setAgent(JSON.parse(localStorage.getItem("agent")));
+
+    if (localStorage.getItem("agent") === null) {
+      window.location.href = "/login";
+    }
+  }, []);
+
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
