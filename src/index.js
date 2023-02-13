@@ -8,11 +8,11 @@ import "assets/styles/tailwind.css";
 // layouts
 
 import Dashboard from "views/admin/Dashboard.js";
-import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import Login from "views/auth/Login";
 import Register from "views/auth/Register";
 import UnverVerification from "views/UnverVerification";
+import Rejected from "views/Rejected";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -22,6 +22,7 @@ ReactDOM.render(
       <Route path="/register" exact component={Register} />
       <Route path="/under-verification" exact component={UnverVerification} />
       <Route path="/admin/tables" exact component={Tables} />
+      <Route path="/rejected" exact component={Rejected} />
       <Redirect from="/admin" to="/admin/dashboard" />
     </Switch>
   </BrowserRouter>,

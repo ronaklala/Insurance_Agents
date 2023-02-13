@@ -1,7 +1,7 @@
 import FooterSmall from "components/Footers/FooterSmall";
 import React from "react";
 
-const UnverVerification = () => {
+const Rejected = () => {
   return (
     <>
       <main>
@@ -21,14 +21,15 @@ const UnverVerification = () => {
                     <div className="text-blueGray-400 text-center mb-3 font-bold justify-center w-full">
                       <center>
                         <img
-                          src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif"
+                          src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Animated_numbers_0_to_100_slow.gif"
                           style={{ height: "250px" }}
                           alt="Error"
                         />
                         <h1 style={{ fontSize: "1.2rem" }}>
-                          Please Wait While the Administrators Approve Your
-                          Application. This process usually takes around 10-12
-                          Hours.
+                          Sorry Dear, We are sad to say that Your Profile has
+                          been rejected by one of our Admins, If you think there
+                          is a mistake by our admin please Register again or
+                          contact us contact@project.com
                         </h1>
                       </center>
                     </div>
@@ -44,4 +45,4 @@ const UnverVerification = () => {
   );
 };
 
-export default UnverVerification;
+export default Rejected;

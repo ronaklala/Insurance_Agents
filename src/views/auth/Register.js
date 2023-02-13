@@ -15,7 +15,8 @@ export default function Register() {
     category: "",
     brand: "",
     type: "",
-    is_verified: false,
+    is_verified: 0,
+    credit: 0,
   });
 
   const [doc, setDoc] = useState();
@@ -196,13 +197,10 @@ export default function Register() {
                         >
                           Insurance Category
                         </label>
-                        <input
-                          type="text"
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="AmsterDam"
-                          name="category"
-                          onChange={handleChange}
-                        />
+                        <select name="category" onChange={handleChange}>
+                          <option value="Life Insurance">Life</option>
+                          <option value="Non-Life Insurance">Non-Life</option>
+                        </select>
                       </div>
 
                       <div className="relative w-full mb-3">
@@ -260,8 +258,17 @@ export default function Register() {
                         </label>
                         <select name="type" onChange={handleChange}>
                           <option selected>---------</option>
-                          <option>Type A</option>
-                          <option>Type B</option>
+                          <option value="Health Insurance">
+                            Health Insurance
+                          </option>
+                          <option value="Life Insurance">Life Insurance</option>
+                          <option value="Car Insurance">Car Insurance</option>
+                          <option value="House Insurance">
+                            House Insurance
+                          </option>
+                          <option value="Business Insurance">
+                            Business Insurance
+                          </option>
                         </select>
                       </div>
 

@@ -1,5 +1,7 @@
+import axios from "axios";
 import FooterSmall from "components/Footers/FooterSmall";
 import React, { useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -7,6 +9,41 @@ export default function Login() {
     email: "",
     password: "",
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAgent((event) => {
+      return {
+        ...event,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:5000/admin/agent_login", agent)
+      .then((res) => {
+        if (res.data[0].is_verified === 0) {
+          window.location.href = "/under-verification";
+        } else if (res.data[0].is_verified === 2) {
+          window.location.href = "/rejected";
+        } else if (res.data[0].is_verified === 1) {
+          window.localStorage.setItem("agent", JSON.stringify(res.data[0]));
+          toast.success("Logged in Successfully");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 500);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          toast.error("Email Not Found");
+        } else if (err.response.status === 400) {
+          toast.error("Invalid Password");
+        }
+      });
+  };
 
   return (
     <>
@@ -46,6 +83,8 @@ export default function Login() {
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Email"
+                          name="email"
+                          onChange={handleChange}
                         />
                       </div>
 
@@ -60,12 +99,15 @@ export default function Login() {
                           type="password"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Password"
+                          onChange={handleChange}
+                          name="password"
                         />
                       </div>
                       <div className="text-center mt-6">
                         <button
                           className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                           type="button"
+                          onClick={handleSubmit}
                         >
                           Sign In
                         </button>
@@ -95,6 +137,7 @@ export default function Login() {
           <FooterSmall absolute />
         </section>
       </main>
+      <Toaster />
     </>
   );
 }
