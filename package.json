@@ -11,6 +11,7 @@
     "chart.js": "2.9.4",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
+    "jquery": "^3.6.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hot-toast": "^2.4.0",

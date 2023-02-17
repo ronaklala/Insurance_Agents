@@ -2,6 +2,7 @@ import axios from "axios";
 import FooterSmall from "components/Footers/FooterSmall";
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [fileloading, setFileLoading] = useState(false);
@@ -81,7 +82,11 @@ export default function Register() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          if (err.response.status === 403) {
+            toast.error("Email Address Already Exists");
+          } else {
+            toast.error("Internal Server Error");
+          }
         });
     }
   };
@@ -280,6 +285,11 @@ export default function Register() {
                         >
                           Create Account
                         </button>
+                      </div>
+                      <div className="w-1/2">
+                        <Link to="/login">
+                          <p>Login Here</p>
+                        </Link>
                       </div>
                     </form>
                   </div>
