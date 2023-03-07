@@ -18,6 +18,7 @@ export default function Register() {
     type: "",
     is_verified: 0,
     credit: 0,
+    profile_img: "https://i.ibb.co/LhVypFg/image-removebg-preview.png",
   });
 
   const [doc, setDoc] = useState();
@@ -72,7 +73,10 @@ export default function Register() {
       toast.error("Please Fill the whole Form to register");
     } else {
       axios
-        .post("http://localhost:5000/agent/agent_register", agent)
+        .post(
+          "https://insurance-api-five.vercel.app/agent/agent_register",
+          agent
+        )
         .then((res) => {
           if (res.status === 200) {
             toast.success("Registered Successfully, You can now Login");

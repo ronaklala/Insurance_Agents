@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import PurchaseHistroy from "./PurchaseHistroy";
 
-import GetClients from "./GetClients";
-
-const Clients = () => {
+const Txn = () => {
   const [loading, setLoading] = useState(true);
 
   let [user, setUser] = useState();
@@ -22,7 +21,7 @@ const Clients = () => {
         <></>
       ) : (
         <>
-          <GetClients
+          <PurchaseHistroy
             type={user.type}
             category={user.category}
             name={user.name}
@@ -35,4 +34,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Txn;
