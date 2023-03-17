@@ -207,6 +207,7 @@ export default function Register() {
                           Insurance Category
                         </label>
                         <select name="category" onChange={handleChange}>
+                          <option selected>----------------</option>
                           <option value="Life Insurance">Life</option>
                           <option value="Non-Life Insurance">Non-Life</option>
                         </select>
