@@ -26,7 +26,7 @@ const GetClients = (props) => {
         setDataloading(false);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Internal Server Error");
       });
   }, [props.category, props.type, props.city]);
 

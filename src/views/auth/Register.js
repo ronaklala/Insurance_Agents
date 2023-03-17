@@ -38,7 +38,7 @@ export default function Register() {
     )
       .then((r) => r.json())
       .catch((err) => {
-        console.log(err);
+        toast.error("Internal Server Error");
       });
     if (dataFile.secure_url !== null) {
       toast.success("Uploaded Successfully");

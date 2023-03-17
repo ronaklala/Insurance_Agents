@@ -29,7 +29,7 @@ const Profile = () => {
     )
       .then((r) => r.json())
       .catch((err) => {
-        console.log(err);
+        toast.error("Internval Server Error");
       });
     if (dataFile.secure_url !== null) {
       let data = {
@@ -37,7 +37,6 @@ const Profile = () => {
         agent_id: agent._id,
       };
 
-      console.log(dataFile.secure_url);
       axios
         .post("https://insurance-api-five.vercel.app/update/agent/", data)
         .then((res) => {
