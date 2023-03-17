@@ -38,7 +38,7 @@ const Profile = () => {
       };
 
       axios
-        .post("https://embarrassed-jewelry.cyclic.app/update/agent/", data)
+        .post("https://insurance-api-five.vercel.app/update/agent/", data)
         .then((res) => {
           toast.success("Uploaded Successfully");
           agent.profile_img = dataFile.secure_url;
