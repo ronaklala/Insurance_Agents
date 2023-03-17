@@ -10,7 +10,7 @@ const PurchaseHistroy = (props) => {
 
   useEffect(() => {
     axios
-      .get("https://insurance-api-five.vercel.app/agent/get_txn/" + props._id)
+      .get("https://embarrassed-jewelry.cyclic.app/agent/get_txn/" + props._id)
       .then((res) => {
         setTxn(res.data);
         setLoading(false);

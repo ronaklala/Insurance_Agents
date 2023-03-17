@@ -23,7 +23,7 @@ export default function HeaderStats() {
    */
   const getData = (id) => {
     axios
-      .get("https://insurance-api-five.vercel.app/agent/get_headers/" + id)
+      .get("https://embarrassed-jewelry.cyclic.app/agent/get_headers/" + id)
       .then((res) => {
         setStats(res.data);
         setDataLoading(false);

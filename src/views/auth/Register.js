@@ -74,7 +74,7 @@ export default function Register() {
     } else {
       axios
         .post(
-          "https://insurance-api-five.vercel.app/agent/agent_register",
+          "https://embarrassed-jewelry.cyclic.app/agent/agent_register",
           agent
         )
         .then((res) => {

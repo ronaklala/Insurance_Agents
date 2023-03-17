@@ -22,7 +22,7 @@ export default function Login() {
 
   const handleSubmit = () => {
     axios
-      .post("https://insurance-api-five.vercel.app/admin/agent_login", agent)
+      .post("https://embarrassed-jewelry.cyclic.app/admin/agent_login", agent)
       .then((res) => {
         if (res.data[0].is_verified === 0) {
           window.location.href = "/under-verification";

@@ -14,7 +14,7 @@ const GetClients = (props) => {
   useEffect(() => {
     axios
       .get(
-        "https://insurance-api-five.vercel.app/agent/get_clients/" +
+        "https://embarrassed-jewelry.cyclic.app/agent/get_clients/" +
           props.type +
           "/" +
           props.category +
@@ -33,7 +33,7 @@ const GetClients = (props) => {
   const StartWork = (id) => {
     axios
       .post(
-        "https://insurance-api-five.vercel.app/agent/startWork/" +
+        "https://embarrassed-jewelry.cyclic.app/agent/startWork/" +
           id +
           "/" +
           props._id

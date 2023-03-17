@@ -37,7 +37,7 @@ const PlanProduct = (props) => (
                       <div className="row">
                         <form
                           action={
-                            "https://insurance-api-five.vercel.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/standard/" +
+                            "https://embarrassed-jewelry.cyclic.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/standard/" +
                             props.id
                           }
                           method="POST"
@@ -80,7 +80,7 @@ const PlanProduct = (props) => (
                       <div className="row">
                         <form
                           action={
-                            "https://insurance-api-five.vercel.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/Gold/" +
+                            "https://embarrassed-jewelry.cyclic.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/Gold/" +
                             props.id
                           }
                           method="POST"
@@ -123,7 +123,7 @@ const PlanProduct = (props) => (
                       <div className="row">
                         <form
                           action={
-                            "https://insurance-api-five.vercel.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/Platinum/" +
+                            "https://embarrassed-jewelry.cyclic.app/create-checkout-session/price_1MiFhDSBUj7Zk1FJqA6cOjNY/Platinum/" +
                             props.id
                           }
                           method="POST"
